@@ -52,9 +52,11 @@ ext {
 	inboxRemote                : "cielo.inbox:remote-retrofit-repository:0.3.0",	    
 	jsr250                     : "javax.annotation:jsr250-api:1.0",
 	kotlin_std_lib             : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+	logging_interceptor        : "com.squareup.okhttp3:logging-interceptor:3.3.0"
 	merchant                   : "cielo.merchant:domain:0.0.1",
 	mixpanel                   : "com.mixpanel.android:mixpanel-android:4.+",
 	multidex                   : "com.android.support:multidex:1.0.0",
+	okhttp                     : "com.squareup.okhttp3:okhttp:3.3.0",
 	orders                     : "cielo.orders:domain:$ordersVersion",
 	ordersLocalRealm           : "cielo.orders:local-repository-realm:$ordersVersion",
 	ordersLocalMemory          : "cielo.orders:local-repository-memory:$ordersVersion",
