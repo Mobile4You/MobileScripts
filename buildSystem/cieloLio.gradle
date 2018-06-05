@@ -1,0 +1,19 @@
+apply from: './buildSystem/version.gradle'
+
+task repoVersion() {
+    doLast {
+        print "[repo-version: ${artifactVersion}]"
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+}

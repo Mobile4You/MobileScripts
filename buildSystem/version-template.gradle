@@ -1,0 +1,9 @@
+ext {
+
+    versionMajor = 1
+    versionMinor = 0
+    versionPatch = 0
+
+    artifactVersion = "${versionMajor}.${versionMinor}.${versionPatch}"
+
+}

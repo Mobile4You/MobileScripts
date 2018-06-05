@@ -1,0 +1,84 @@
+apply plugin: "com.jfrog.artifactory"
+apply plugin: 'maven-publish'
+
+task sourceJar(type: Jar) {
+    from "src/main/java"
+    from "src/main/kotlin"
+    classifier = 'sources'
+}
+
+// Maven
+publishing {
+
+    publications {
+
+        aar(MavenPublication) {
+            groupId = project.group
+            artifactId = project.name
+            version = project.version
+
+            if (!project.hasProperty('release')) {
+                version = "${project.version}-SNAPSHOT"
+            }
+
+            // Publishing Java Sources in .jar
+            artifact(sourceJar)
+
+            // Publishing compiled code in aar or jar
+            if (project.plugins.hasPlugin("com.android.library")) {
+                artifact "${project.buildDir}/outputs/aar/${project.name}-release.aar"
+            } else {
+                artifact "${project.buildDir}/libs/${project.name}-${project.version}.jar"
+            }
+
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode('dependencies')
+                //Iterate over the compile dependencies (we don't want the test ones), adding a <dependency> node for each
+                configurations.implementation.allDependencies.each {
+
+                    def dependencyVersion = it.version
+
+                    if (!project.hasProperty('release') && it.group == groupId) {
+                        dependencyVersion = "${it.version}-SNAPSHOT"
+                    }
+
+                    if((it.group != null || "unspecified".equals(it.group)) &&
+                            (it.name != null || "unspecified".equals(it.name)) &&
+                            (it.version != null || !it.version.isEmpty() || !"unspecified".equals(it.version))) {
+
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        dependencyNode.appendNode('version', dependencyVersion)
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Jfrog
+artifactory {
+    contextUrl = artifactoryContextUrl
+    publish {
+        repository {
+            repoKey = project.hasProperty('release') ? artifactoryReleaseLocal : artifactorySnapshotLocal
+            username = artifactoryUser
+            password = artifactoryPassword
+            maven = true
+        }
+        defaults {
+            publishArtifacts = true
+            publications('aar')
+            publishPom = true
+            publishIvy = true
+        }
+    }
+    resolve {
+        repository {
+            repoKey = artifactoryResolveRepoKey
+            username = artifactoryUser
+            password = artifactoryPassword
+        }
+    }
+}

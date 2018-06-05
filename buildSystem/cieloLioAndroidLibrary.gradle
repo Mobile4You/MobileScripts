@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+apply from: './../buildSystem/cieloLioLibraryPublisher.gradle'
+
+android {
+    compileSdkVersion 26
+
+    defaultConfig {
+        minSdkVersion 22
+        targetSdkVersion 26
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            version = artifactVersion
+        }
+    }
+
+}
