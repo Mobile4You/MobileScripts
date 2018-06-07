@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply from: './../buildSystem/cieloLioLibraryPublisher.gradle'
+apply from: 'https://raw.githubusercontent.com/Mobile4You/MobileScripts/master/buildSystem/cieloLioLibraryPublisher.gradle'
 
 android {
     compileSdkVersion 26
