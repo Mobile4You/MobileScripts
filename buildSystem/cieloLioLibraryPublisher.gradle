@@ -62,7 +62,18 @@ artifactory {
     contextUrl = artifactoryContextUrl
     publish {
         repository {
-            repoKey = project.hasProperty('release') ? artifactoryReleaseLocal : artifactorySnapshotLocal
+
+            def artifactoryRepo = ''
+
+            if (project.hasProperty('release')) {
+                if (project.hasProperty('artifactoryReleaseLocal')) {
+                    artifactoryRepo = artifactoryReleaseLocal
+                }
+            } else if (project.hasProperty('artifactorySnapshotLocal')) {
+                artifactoryRepo = artifactorySnapshotLocal
+            }
+
+            repoKey = artifactoryRepo
             username = artifactoryUser
             password = artifactoryPassword
             maven = true
