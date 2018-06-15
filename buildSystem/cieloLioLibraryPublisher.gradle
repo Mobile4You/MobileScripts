@@ -28,7 +28,7 @@ publishing {
             if (project.plugins.hasPlugin("com.android.library")) {
                 artifact "${project.buildDir}/outputs/aar/${project.name}-release.aar"
             } else {
-                artifact "${project.buildDir}/libs/${project.name}-${project.version}.jar"
+                artifact "${project.buildDir}/libs/${project.name}.jar"
             }
 
             pom.withXml {
