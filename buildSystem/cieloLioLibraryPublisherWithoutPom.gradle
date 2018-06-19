@@ -15,12 +15,8 @@ publishing {
                 version = "${project.version}-SNAPSHOT"
             }
 
-            // Publishing compiled code in aar or jar
-            if (project.plugins.hasPlugin("com.android.library")) {
-                artifact "${project.buildDir}/outputs/aar/${project.name}-release.aar"
-            } else {
-                artifact "${project.buildDir}/libs/${project.name}-${project.version}.jar"
-            }
+            // Publishing compiled code in aar
+            artifact "${project.buildDir}/outputs/aar/${project.name}-release.aar"
         }
     }
 }
