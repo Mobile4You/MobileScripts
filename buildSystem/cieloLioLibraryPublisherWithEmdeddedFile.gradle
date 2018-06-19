@@ -14,7 +14,6 @@ publishing {
             if (!project.hasProperty('release')) {
                 version = "${project.version}-SNAPSHOT"
             }
-            artifact(fileName)
         }
     }
 }
