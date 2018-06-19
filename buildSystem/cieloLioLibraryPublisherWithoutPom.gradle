@@ -13,10 +13,7 @@ publishing {
 
             if (!project.hasProperty('release')) {
                 version = "${project.version}-SNAPSHOT"
-            }
-
-            // Publishing compiled code in aar
-            artifact "${project.buildDir}/outputs/aar/${project.name}-release.aar"
+            }  
         }
     }
 }
