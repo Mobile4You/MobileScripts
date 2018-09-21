@@ -9,7 +9,7 @@ android {
         applicationId "cielo.tokendispatcher.testqrcode"
         minSdkVersion 22
         targetSdkVersion 26
-        versionCode applicationId.versionCode
+        versionCode application.versionCode
         versionName application.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
