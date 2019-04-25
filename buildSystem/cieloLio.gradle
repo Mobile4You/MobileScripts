@@ -10,10 +10,30 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+/*======================================================================================================================
+- ALL MODULES
+======================================================================================================================*/
 allprojects {
+    group = 'cielo.lio'
+
     repositories {
+        mavenLocal()
+        mavenCentral()
         google()
         jcenter()
-        mavenCentral()
+        maven {
+            url artifactoryUrl
+            credentials {
+                username = artifactoryUser
+                password = artifactoryPassword
+            }
+        }
+        maven {
+            url artifactoryLocalUrl
+            credentials {
+                username = artifactoryUser
+                password = artifactoryLocalPassword
+            }
+        }
     }
 }
