@@ -19,9 +19,11 @@ def application = rootProject.ext.application
 
 android {
     compileSdkVersion 26
+    
+    flavorDimensions "default"
 
     defaultConfig {
-        applicationId "cielo.tokendispatcher.testqrcode"
+        applicationId "${group}.${project.name}"
         minSdkVersion 22
         targetSdkVersion 26
         versionCode application.versionCode
