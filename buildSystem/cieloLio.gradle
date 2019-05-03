@@ -29,6 +29,13 @@ allprojects {
             }
         }
         maven {
+            url artifactorySnapshotUrl
+            credentials {
+                username = artifactoryUser
+                password = artifactoryPassword
+            }
+        }
+        maven {
             url artifactoryLocalUrl
             credentials {
                 username = artifactoryUser
