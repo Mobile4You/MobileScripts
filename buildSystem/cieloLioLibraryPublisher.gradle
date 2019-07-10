@@ -9,9 +9,7 @@ task sourceJar(type: Jar) {
 
 // Maven
 publishing {
-
     publications {
-
         aar(MavenPublication) {
             groupId = project.group
             artifactId = project.name
@@ -21,6 +19,7 @@ publishing {
                 version = "${project.version}-SNAPSHOT"
             }
 
+            println("Version: " + version)
             // Publishing Java Sources in .jar
             artifact(sourceJar)
 
@@ -29,6 +28,7 @@ publishing {
                 artifact "${project.buildDir}/outputs/aar/${project.name}-release.aar"
             } else {
                 artifact "${project.buildDir}/libs/${project.name}-${project.version}.jar"
+                println("Version: " + project.version)
             }
 
             pom.withXml {
