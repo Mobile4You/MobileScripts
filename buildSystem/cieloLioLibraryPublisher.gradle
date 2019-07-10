@@ -63,7 +63,7 @@ artifactory {
     publish {
         repository {
 
-            def artifactoryRepo = ''
+            def artifactoryRepo = 'a'
 
             if (project.hasProperty('release')) {
                 if (project.hasProperty('artifactoryReleaseLocal')) {
