@@ -16,7 +16,7 @@ publishing {
             groupId = project.group
             artifactId = project.name
             version = project.version
-
+            
             if (!project.hasProperty('release')) {
                 version = "${project.version}-SNAPSHOT"
             }
@@ -27,6 +27,8 @@ publishing {
             // Publishing compiled code in aar or jar
             if (project.plugins.hasPlugin("com.android.library")) {
                 artifact "${project.buildDir}/outputs/aar/${project.name}-release.aar"
+            } else if("unspecified".equals(project.version) || "".equals(project.version)) { 
+                artifact "${project.buildDir}/libs/${project.name}.jar"
             } else {
                 artifact "${project.buildDir}/libs/${project.name}-${project.version}.jar"
             }
@@ -63,7 +65,7 @@ artifactory {
     publish {
         repository {
 
-            def artifactoryRepo = 'a'
+            def artifactoryRepo = ''
 
             if (project.hasProperty('release')) {
                 if (project.hasProperty('artifactoryReleaseLocal')) {
