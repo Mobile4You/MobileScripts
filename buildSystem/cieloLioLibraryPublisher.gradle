@@ -19,7 +19,6 @@ publishing {
                 version = "${project.version}-SNAPSHOT"
             }
 
-            println("Version: " + version)
             // Publishing Java Sources in .jar
             artifact(sourceJar)
 
