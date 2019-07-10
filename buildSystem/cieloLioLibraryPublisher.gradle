@@ -28,8 +28,7 @@ publishing {
             } else if("unspecified".equals(project.version) || "".equals(project.version)) { 
                 artifact "${project.buildDir}/libs/${project.name}.jar"
             } else {
-                artifact "${project.buildDir}/libs/${project.name}-${project.version}.jar"
-                println("Version: " + project.version)
+                artifact "${project.buildDir}/libs/${project.name}-${project.version}.jar"                
             }
 
             pom.withXml {
