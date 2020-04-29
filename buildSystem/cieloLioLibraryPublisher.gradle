@@ -24,7 +24,7 @@ publishing {
 
             // Publishing compiled code in aar or jar
             if (project.plugins.hasPlugin("com.android.library")) {
-                artifact "${project.buildDir}/outputs/aar/${project.name}-release.aar"
+                artifact "${project.buildDir}/outputs/aar/${project.name}-${project.hasProperty("debug") ? "debug" : "release" }.aar"
             } else if("unspecified".equals(project.version) || "".equals(project.version)) { 
                 artifact "${project.buildDir}/libs/${project.name}.jar"
             } else {
